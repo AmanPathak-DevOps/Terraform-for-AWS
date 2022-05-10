@@ -5,7 +5,7 @@ resource "aws_autoscaling_group" "Aman-ASG" {
   vpc_zone_identifier       = [aws_subnet.public-subnet-1.id, aws_subnet.public-subnet-2.id]
   launch_configuration      = aws_launch_configuration.LC.id
   min_size                  = 2
-  max_size                  = 2
+  max_size                  = 4
   health_check_grace_period = 100
   health_check_type         = "ELB"
   load_balancers            = [aws_elb.custom-elb.name]

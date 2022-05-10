@@ -1,3 +1,8 @@
+# resource "aws_lb" "custom-nlb" {
+
+# }
+
+
 resource "aws_elb" "custom-elb" {
   name            = "custom-elb"
   subnets         = [aws_subnet.public-subnet-1.id, aws_subnet.public-subnet-2.id]
@@ -73,14 +78,14 @@ resource "aws_security_group" "custom-instance-sg" {
     to_port         = 22
     protocol        = "tcp"
     security_groups = [aws_security_group.custom-elb-sg.id]
-    cidr_blocks = ["0.0.0.0/0"]
+    cidr_blocks     = ["0.0.0.0/0"]
   }
   ingress {
     from_port       = 80
     to_port         = 80
     protocol        = "tcp"
     security_groups = [aws_security_group.custom-elb-sg.id]
-    cidr_blocks = ["0.0.0.0/0"]
+    cidr_blocks     = ["0.0.0.0/0"]
   }
   tags = {
     Name = "custom-instance-sg"
