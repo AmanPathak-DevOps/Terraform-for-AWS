@@ -1,64 +1,36 @@
-resource "aws_eip" "eip1" {
-  tags = {
-    Name = "eip1"
-  }
-}
+# resource "aws_lb" "custom-nlb" {
 
-resource "aws_eip" "eip2" {
-  tags = {
-    Name = "eip2"
-  }
-}
-
-resource "aws_lb" "nlb" {
-  name               = "this"
-  internal           = false
-  load_balancer_type = "network"
-  subnet_mapping {
-    subnet_id     = aws_subnet.public-subnet-1.id
-    allocation_id = aws_eip.eip1.id
-  }
-  subnet_mapping {
-    subnet_id     = aws_subnet.public-subnet-2.id
-    allocation_id = aws_eip.eip2.id
-  }
-
-  tags = {
-    Name = "nlb"
-  }
-}
+# }
 
 
-resource "aws_lb_target_group" "lb_tg" {
-  name        = "http"
-  vpc_id      = aws_vpc.vpc.id
-  port        = 80
-  protocol    = "TCP"
-  target_type = "instance"
+resource "aws_elb" "custom-elb" {
+  name            = "custom-elb"
+  subnets         = [aws_subnet.public-subnet-1.id, aws_subnet.public-subnet-2.id]
+  security_groups = [aws_security_group.custom-elb-sg.id]
+
+  listener {
+    instance_port     = 80
+    instance_protocol = "http"
+    lb_port           = 80
+    lb_protocol       = "http"
+  }
 
   health_check {
-    enabled  = true
-    interval = 30
-    port     = 80
+    healthy_threshold   = 2
+    unhealthy_threshold = 2
+    timeout             = 3
+    target              = "HTTP:80/"
+    interval            = 30
   }
+
+  cross_zone_load_balancing   = true
+  connection_draining         = true
+  connection_draining_timeout = 400
 
   tags = {
-    Name = "lb_tg"
+    Name = "custom-elb"
   }
 }
-
-resource "aws_alb_listener" "alb_listener" {
-  load_balancer_arn = aws_lb.nlb.arn
-  port              = 80
-  protocol          = "TCP"
-
-  default_action {
-    type             = "forward"
-    target_group_arn = aws_lb_target_group.lb_tg.id
-  }
-}
-
-
 
 
 resource "aws_security_group" "custom-elb-sg" {

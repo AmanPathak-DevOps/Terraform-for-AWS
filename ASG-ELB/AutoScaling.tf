@@ -1,18 +1,15 @@
 
 
 resource "aws_autoscaling_group" "Aman-ASG" {
-  name                 = "Aman-ASG"
-  vpc_zone_identifier  = [aws_subnet.public-subnet-1.id, aws_subnet.public-subnet-2.id]
-  launch_configuration = aws_launch_configuration.LC.id
-  min_size             = 2
-  max_size             = 4
-  target_group_arns    = [aws_lb_target_group.lb_tg.arn]
-
+  name                      = "Aman-ASG"
+  vpc_zone_identifier       = [aws_subnet.public-subnet-1.id, aws_subnet.public-subnet-2.id]
+  launch_configuration      = aws_launch_configuration.LC.id
+  min_size                  = 2
+  max_size                  = 4
   health_check_grace_period = 100
-
-  health_check_type = "ELB"
-  # load_balancers            = [aws_lb.custom-lb.name]
-  force_delete = true
+  health_check_type         = "ELB"
+  load_balancers            = [aws_elb.custom-elb.name]
+  force_delete              = true
   tag {
     key                 = "Name"
     value               = "custom-ec2-instance"
