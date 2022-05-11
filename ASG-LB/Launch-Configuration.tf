@@ -12,17 +12,13 @@ resource "aws_launch_configuration" "LC" {
                 apt upgrade
                 apt-get -y install net-tools nginx
                 cd /var/www/html
-                sudo wget https://www.tooplate.com/zip-templates/2106_soft_landing.zip
-                sudo apt install unzip
-                sudo unzip 2106_soft_landing.zip
-                sudo rm -rf 2106_soft_landing.zip index.nginx-debian.html
+                wget https://www.tooplate.com/zip-templates/2106_soft_landing.zip
+                apt install unzip
+                unzip 2106_soft_landing.zip
+                rm -rf 2106_soft_landing.zip index.nginx-debian.html
                 cd 2106_soft_landing/
-                sudo mv index.html ../
-                sudo mv css ../
-                sudo mv fonts ../
-                sudo mv images js ../
-                sudo rm -rf 2106_soft_landing/
-
+                mv index.html css fonts images js ../
+                rm -rf 2106_soft_landing/
     EOF
   lifecycle {
     create_before_destroy = true

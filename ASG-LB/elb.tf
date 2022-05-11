@@ -4,11 +4,6 @@ resource "aws_eip" "eip1" {
   }
 }
 
-resource "aws_eip" "eip2" {
-  tags = {
-    Name = "eip2"
-  }
-}
 
 resource "aws_lb" "nlb" {
   name               = "this"
@@ -18,10 +13,12 @@ resource "aws_lb" "nlb" {
     subnet_id     = aws_subnet.public-subnet-1.id
     allocation_id = aws_eip.eip1.id
   }
+
   subnet_mapping {
     subnet_id     = aws_subnet.public-subnet-2.id
-    allocation_id = aws_eip.eip2.id
-  }
+    allocation_id = aws_eip.eip1.id
+  } 
+  
 
   tags = {
     Name = "nlb"

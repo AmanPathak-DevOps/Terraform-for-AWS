@@ -11,7 +11,6 @@ resource "aws_autoscaling_group" "Aman-ASG" {
   health_check_grace_period = 100
 
   health_check_type = "ELB"
-  # load_balancers            = [aws_lb.custom-lb.name]
   force_delete = true
   tag {
     key                 = "Name"
