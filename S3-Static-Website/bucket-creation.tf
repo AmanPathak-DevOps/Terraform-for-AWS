@@ -10,14 +10,6 @@ resource "aws_s3_bucket" "s3-bucket" {
   }
 }
 
-# resource "aws_s3_object" "upload-s3" {
-#   for_each = fileset("./2109_the_card/", "*")
-#   bucket = "the-far-est-baket"
-#   acl           = "public-read"
-#   key    = each.value
-#   source = "./2109_the_card/${each.value}"
-#   etag  = filemd5("./2109_the_card/${each.value}")
-# }
 
 
 resource "null_resource" "upload-to-S3" {
@@ -26,8 +18,6 @@ resource "null_resource" "upload-to-S3" {
     }
 }
 
-
-
 resource "aws_s3_bucket_website_configuration" "configuration" {
     bucket = aws_s3_bucket.s3-bucket.id
 
@@ -35,13 +25,6 @@ resource "aws_s3_bucket_website_configuration" "configuration" {
     suffix = "index.html"
     }
 }
-
-
-# resource "aws_iam_policy" "iam-policy" {
-#     name = "policy-bucket-s3"
-#     path = "/"
-#     policy = file("${path.module}/iam-policy.json")
-# }
 
 
 resource "aws_s3_bucket_policy" "allow_access" {
