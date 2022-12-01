@@ -1,11 +1,10 @@
 resource "aws_ecs_task_definition" "TD" {
-  family = "Main-TD"
+  family                   = "Nginx-TD"
   requires_compatibilities = ["FARGATE"]
-  execution_role_arn = aws_iam_role.iam-role.arn
-  network_mode = "awsvpc"
-  cpu = 1024
-  memory = 2048
-  
+  execution_role_arn       = aws_iam_role.iam-role.arn
+  network_mode             = "awsvpc"
+  cpu                      = 1024
+  memory                   = 2048
   container_definitions = jsonencode([
     {
       name      = "main-container"
@@ -21,9 +20,9 @@ resource "aws_ecs_task_definition" "TD" {
       ]
     }
   ])
+}
 
-  runtime_platform {
-    operating_system_family = "LINUX"
-    cpu_architecture = "X86_64"
-  }
+
+data "aws_ecs_task_definition" "TD" {
+  task_definition = aws_ecs_task_definition.TD.family
 }
