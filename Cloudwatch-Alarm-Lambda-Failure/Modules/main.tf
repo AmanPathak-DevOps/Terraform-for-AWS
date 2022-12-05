@@ -1,0 +1,3 @@
+module "alarm" {
+  source = "../Resources"
+}
