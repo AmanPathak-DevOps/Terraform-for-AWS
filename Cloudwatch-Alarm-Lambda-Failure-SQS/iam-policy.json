@@ -1,0 +1,18 @@
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Effect": "Allow",
+            "Action": [
+                "sns:*",
+                "cloudwatch:*",
+                "logs:*",
+                "iam:GetPolicy",
+                "iam:GetPolicyVersion",
+                "iam:GetRole",
+                "sqs:*"
+            ],
+            "Resource": "*"
+        }
+    ]
+}

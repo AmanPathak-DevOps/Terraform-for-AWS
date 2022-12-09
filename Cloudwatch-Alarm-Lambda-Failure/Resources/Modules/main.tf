@@ -1,3 +1,0 @@
-module "lambda" {
-    source = "../Resources"
-}

@@ -17,7 +17,7 @@ resource "aws_sns_topic" "topic-sns" {
 resource "aws_sns_topic_subscription" "subscription" {
   topic_arn = aws_sns_topic.topic-sns.arn
   protocol  = "email"
-  endpoint  = "aman.pathak@aitglobalinc.com"
+  endpoint  = var.ENDPOINT
 }
 
 
@@ -30,11 +30,6 @@ resource "aws_lambda_function_event_invoke_config" "example" {
   }
 }
 
-variable "ENDPOINT" {
-  default   = ""
-  type      = string
-  sensitive = true
-}
 
 
 
