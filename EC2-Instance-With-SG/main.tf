@@ -76,7 +76,7 @@ resource "aws_instance" "Aman-EC2" {
   }
 }
 
-variable "PEM-FILE" {
+variable "PEMFILE" {
   default = ""
   type      = string
   sensitive = true
