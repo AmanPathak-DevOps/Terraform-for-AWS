@@ -69,7 +69,7 @@ resource "aws_instance" "Aman-EC2" {
   instance_type   = "t2.micro"
   subnet_id       = aws_subnet.subnet.id
   security_groups = [aws_security_group.security-group.id]
-  key_name        = "Pathak-SahaB"
+  key_name        = "Aman-Pathak"
 
   tags = {
     Name = "Aman-EC2"
