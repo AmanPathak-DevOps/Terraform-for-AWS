@@ -69,9 +69,15 @@ resource "aws_instance" "Aman-EC2" {
   instance_type   = "t2.micro"
   subnet_id       = aws_subnet.subnet.id
   security_groups = [aws_security_group.security-group.id]
-  key_name        = "Aman-Pathak"
+  key_name        = var.PEM-FILE
 
   tags = {
     Name = "Aman-EC2"
   }
+}
+
+variable "PEM-FILE" {
+  default = ""
+  type      = string
+  sensitive = true
 }
