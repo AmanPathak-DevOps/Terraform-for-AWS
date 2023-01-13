@@ -4,7 +4,7 @@ resource "aws_lambda_function" "lamda-1" {
     handler                        = "${var.handler-for-lambda}"
     runtime                        = "${var.runtime-for-lambda}"
     filename                       = "${var.code-for-lambda}"
-    # source_code_hash               = filebase64sha256(var.code-for-lambda)
+    source_code_hash               = filebase64sha256(var.code-for-lambda)
     role                           = "${var.role-for-lambda}"
     timeout                        = "${var.timeout-for-lambda}"
     memory_size                    = "${var.memory-size-for-lambda}"

@@ -1,6 +1,6 @@
 module "lambda-for-SNS" {
   source = "../Modules/Terraform-Lambda"
-
+  
   is_enabled             = 1 // To disable the lambda override with 0
   lambdafile_count       = 1
   function               = var.functionname
@@ -13,6 +13,8 @@ module "lambda-for-SNS" {
   memory-size-for-lambda = var.memory-size
 
   lambda_env = {
-    ENV = var.environ
+    ENV = var.sdlc_env
   }
 }
+
+
