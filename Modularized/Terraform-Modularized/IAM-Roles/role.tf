@@ -1,4 +1,4 @@
 resource "aws_iam_role" "iam-role" {
-  name               = "iam-role-lambda-api-gateway"
-  assume_role_policy = file("${path.module}/role.json")
+  name               = var.role_name
+  assume_role_policy = file("${path.module}/${var.role_policy_file}")
 }
