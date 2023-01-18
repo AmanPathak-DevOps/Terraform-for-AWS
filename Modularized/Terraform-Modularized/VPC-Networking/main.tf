@@ -29,6 +29,7 @@ module "vpc" {
   is_rt_enable = var.is_enable_rt
   rt_count     = 1
   public_route = var.route_public
+  route_table_name = var.rt_name
 
   is_rta_enable = var.is_enable_rta
   rta_count     = 1
