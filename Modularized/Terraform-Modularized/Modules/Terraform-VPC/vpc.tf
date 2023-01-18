@@ -48,7 +48,7 @@ resource "aws_subnet" "private-subnet-1" {
   map_public_ip_on_launch = var.private_ip
 
   tags = {
-    Name = var.subnet_name1
+    Name = var.subnet_name2
   }
 }
 
@@ -63,6 +63,10 @@ resource "aws_route_table" "route_table" {
   route {
     cidr_block = var.public_route
     gateway_id = aws_internet_gateway.gateway[count.index].id
+  }
+
+  tags = {
+    Name = var.route_table_name
   }
 }
 

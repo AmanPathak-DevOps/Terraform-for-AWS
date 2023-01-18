@@ -22,5 +22,6 @@ private_subnet           = "Private-Networking"
 
 is_enable_rt = 1
 route_public = "0.0.0.0/0"
+rt_name = "RT-Networking"
 
 is_enable_rta = 1

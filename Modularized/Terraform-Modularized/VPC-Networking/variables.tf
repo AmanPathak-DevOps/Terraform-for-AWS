@@ -22,5 +22,6 @@ variable "private_subnet" {}
 
 variable "is_enable_rt" {}
 variable "route_public" {}
+variable "rt_name" {}
 
 variable "is_enable_rta" {}

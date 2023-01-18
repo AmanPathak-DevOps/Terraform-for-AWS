@@ -26,6 +26,7 @@ variable "private_ip" {}
 variable "is_rt_enable" {}
 variable "rt_count" {}
 variable "public_route" {}
+variable "route_table_name" {}
 
 variable "is_rta_enable" {}
 variable "rta_count" {}
