@@ -1,0 +1,10 @@
+variable "region" {}
+variable "is_lambda_enabled" {}
+variable "functionname" {}
+variable "lambdafunctionname" {}
+variable "lambda-runtime" {}
+variable "lambda-handler" {}
+variable "handler-code" {}
+variable "timout-lambda" {}
+variable "memory-size" {}
+variable "sdlc_env" {}
