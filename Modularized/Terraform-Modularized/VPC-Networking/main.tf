@@ -26,11 +26,19 @@ module "vpc" {
   private_ip               = var.map_private_ip
   subnet_name2             = var.private_subnet
 
-  is_rt_enable = var.is_enable_rt
-  rt_count     = 1
-  public_route = var.route_public
+  is_rt_enable     = var.is_enable_rt
+  rt_count         = 1
+  public_route     = var.route_public
   route_table_name = var.rt_name
 
   is_rta_enable = var.is_enable_rta
   rta_count     = 1
+
+  is_aws_security_group_enable = var.is_sg_enable
+  security_group_count         = 1
+  from_port1                   = var.from_port1
+  to_port1                     = var.to_port1
+  from_port2                   = var.from_port2
+  to_port2                     = var.to_port2
+  security_group_name          = var.sg_name
 }

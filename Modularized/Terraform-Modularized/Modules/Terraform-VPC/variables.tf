@@ -31,5 +31,10 @@ variable "route_table_name" {}
 variable "is_rta_enable" {}
 variable "rta_count" {}
 
-
-
+variable "is_aws_security_group_enable" {}
+variable "security_group_count" {}
+variable "from_port1" {}
+variable "to_port1" {}
+variable "from_port2" {}
+variable "to_port2" {}
+variable "security_group_name" {}

@@ -25,3 +25,10 @@ variable "route_public" {}
 variable "rt_name" {}
 
 variable "is_enable_rta" {}
+
+variable "is_sg_enable" {}
+variable "from_port1" {}
+variable "to_port1" {}
+variable "from_port2" {}
+variable "to_port2" {}
+variable "sg_name" {}

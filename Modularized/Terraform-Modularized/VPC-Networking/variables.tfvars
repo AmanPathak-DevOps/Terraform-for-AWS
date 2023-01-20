@@ -22,6 +22,13 @@ private_subnet           = "Private-Networking"
 
 is_enable_rt = 1
 route_public = "0.0.0.0/0"
-rt_name = "RT-Networking"
+rt_name      = "RT-Networking"
 
 is_enable_rta = 1
+
+is_sg_enable = 1
+from_port1   = 22
+to_port1     = 22
+from_port2   = 80
+to_port2     = 80
+sg_name      = "SecurityGroup-Networking"
