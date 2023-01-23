@@ -1,10 +1,10 @@
-# EC2-Instance
 region              = "us-east-1"
+
+# EC2-Instance
 is_instance_enabled = 1
 aws_instance_type   = "t2.micro"
 instance_name       = "Ubuntu-Networking"
 
-public_subnet  = "Public-Networking"
 security_group = "SecurityGroup-Networking"
 
 # IAM-Roles
@@ -15,7 +15,6 @@ policy_name = "AWS-Lambda-Role"
 policy_file = "policy.json"
 
 # Lambda-Function
-region = "us-east-1"
 is_lambda_enabled   = 0
 functionname       = "lambda"
 lambdafunctionname = "-for-SNS"
@@ -29,7 +28,6 @@ sdlc_env            = "dev"
 
 
 # S3-Bucket
-region            = "us-east-1"
 is_bucket_enabled = 1
 bucket_name       = "the-far-est-baket"
 force_destroy     = true
@@ -37,7 +35,6 @@ env               = "Development"
 
 
 # VPC-Networking
-region               = "us-east-1"
 is_enable_vpc        = 1
 cidr_block_vpc       = "10.0.0.0/16"
 instance_tenancy_vpc = "default"
