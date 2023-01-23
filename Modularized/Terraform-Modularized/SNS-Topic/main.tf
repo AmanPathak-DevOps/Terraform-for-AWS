@@ -8,5 +8,5 @@ module "sns-topic" {
   is_sns_subscription_enable = var.is_subscription_enable
   sns_subscription_count     = 1
   protocol_sns_subscription  = var.protocol_subscription
-  endpoint_protocol          = var.ENDPOINT
+  endpoint_protocol          = var.endpoint
 }

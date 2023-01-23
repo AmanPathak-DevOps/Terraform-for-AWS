@@ -3,3 +3,4 @@ topic_name = "SNS-Modularized"
 
 is_subscription_enable = 1
 protocol_subscription  = "email"
+endpoint = "avigautam63@gmail.com"
