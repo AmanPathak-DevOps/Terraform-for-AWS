@@ -24,14 +24,14 @@ pipeline {
             steps {
                 withAWS(credentials: 'jenkins-environment', region: 'us-east-1') {
                 echo "Enter File Name ${params.File_Name}"    
-                sh 'terraform -chdir=/var/lib/jenkins/workspace/${Pipeline}/Modularized/Terraform-Modularized/${Module_Name}/ plan -var-file=/var/lib/jenkins/workspace/Terraform-Module-Deployment/Modularized/Terraform-Modularized/${File_Name}'
+                sh 'terraform -chdir=/var/lib/jenkins/workspace/${Pipeline}/Modularized/Terraform-Modularized/${Module_Name}/ plan -var-file=/var/lib/jenkins/workspace/${Pipeline}/Modularized/Terraform-Modularized/${File_Name}'
                 }
             }
         }
         stage('Terraform Apply') {
             steps {
                 withAWS(credentials: 'jenkins-environment', region: 'us-east-1') {
-                sh 'terraform -chdir=/var/lib/jenkins/workspace/${Pipeline}/Modularized/Terraform-Modularized/${Module_Name}/ apply -auto-approve -var-file=/var/lib/jenkins/workspace/Terraform-Module-Deployment/Modularized/Terraform-Modularized/${File_Name}'
+                sh 'terraform -chdir=/var/lib/jenkins/workspace/${Pipeline}/Modularized/Terraform-Modularized/${Module_Name}/ apply -auto-approve -var-file=/var/lib/jenkins/workspace/${Pipeline}/Modularized/Terraform-Modularized/${File_Name}'
                 }
             }
         }
