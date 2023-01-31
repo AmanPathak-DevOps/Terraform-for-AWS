@@ -1,15 +1,15 @@
-# variable "access_key" {
-#   type = string
-# }
-
-# variable "secret_key" {
-#   type = string
-# }
-
 provider "aws" {
   region = "us-east-1"
 }
 
+terraform {
+  backend "s3" {
+    bucket         = "my-ews-baket"
+    region         = "us-east-1"
+    key            = "terraform.tfstate"
+    dynamodb_table = "Lock-Files"
+  }
+}
 
 # creating VPC
 resource "aws_vpc" "vpc" {
@@ -40,6 +40,14 @@ resource "aws_security_group" "security-group" {
   ingress {
     from_port        = 8080
     to_port          = 8080
+    protocol         = "tcp"
+    cidr_blocks      = ["0.0.0.0/0"]
+    ipv6_cidr_blocks = ["::/0"]
+  }
+
+  ingress {
+    from_port        = 3306
+    to_port          = 3306
     protocol         = "tcp"
     cidr_blocks      = ["0.0.0.0/0"]
     ipv6_cidr_blocks = ["::/0"]
