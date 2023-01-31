@@ -1,16 +1,3 @@
-variable "bucket-name" {
-    default = "my-ews-baket"
-}
-variable "region" {
-    default = "us-east-1"
-}
-variable "key" {
-    default = "terraform.tfstate"
-}
-variable "dynamodb_table" {
-    default = "Lock-Files"
-}
-
 variable "is_enabled" {}
 variable "function" {}
 variable "lambda_function_name" {}
