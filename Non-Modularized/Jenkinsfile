@@ -9,7 +9,7 @@ pipeline {
         }
         stage('Git Pulling') {
             steps {
-                git 'https://github.com/AmanPathak-dev/Terraform.git'
+                git branch: 'Modularized-Terraform', url: 'https://github.com/AmanPathak-dev/Terraform.git'
                 sh 'ls'
             }
         }
