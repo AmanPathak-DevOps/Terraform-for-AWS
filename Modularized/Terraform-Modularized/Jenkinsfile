@@ -1,0 +1,38 @@
+properties([parameters([choice(choices: ['Lambda-Function', 'Cloudwatch-Monitoring', 'IAM-Roles', 'EC2-Instance', 'S3-Bucket', 'Glue-Jobs', 'DynamoDB', 'SNS-Topic', 'VPC-Networking'], name: 'Module_Name'), string(defaultValue: 'dev.tfvars', name: 'File_Name')])])
+pipeline {
+    agent any
+    stages {
+        stage('Preparing') {
+            steps {
+                sh 'echo Preparing'
+            }
+        }
+        stage('Git Pulling') {
+            steps {
+                git branch: 'Modularized-Terraform', url: 'https://github.com/AmanPathak-dev/Terraform.git'
+                sh 'ls'
+            }
+        }
+        stage('Terraform Init') {
+            steps {
+                echo "Enter File Name ${params.Module_Name}"
+                sh 'terraform -chdir=/var/lib/jenkins/workspace/Terraform-Module-Deployment/Modularized/Terraform-Modularized/${Module_Name}/ init'
+            }
+        }
+        stage('Terraform Plan') {
+            steps {
+                withAWS(credentials: 'jenkins-environment', region: 'us-east-1') {
+                echo "Enter File Name ${params.File_Name}"    
+                sh 'terraform -chdir=/var/lib/jenkins/workspace/Terraform-Module-Deployment/Modularized/Terraform-Modularized/${Module_Name}/ plan -var-file=/var/lib/jenkins/workspace/Terraform-Module-Deployment/Modularized/Terraform-Modularized/${File_Name}'
+                }
+            }
+        }
+        stage('Terraform Apply') {
+            steps {
+                withAWS(credentials: 'jenkins-environment', region: 'us-east-1') {
+                sh 'terraform -chdir=/var/lib/jenkins/workspace/Terraform-Module-Deployment/Modularized/Terraform-Modularized/${Module_Name}/ apply -auto-approve -var-file=/var/lib/jenkins/workspace/Terraform-Module-Deployment/Modularized/Terraform-Modularized/${File_Name}'
+                }
+            }
+        }
+    }
+}
