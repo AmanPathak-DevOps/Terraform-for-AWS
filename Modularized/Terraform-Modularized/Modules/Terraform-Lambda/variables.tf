@@ -1,7 +1,15 @@
-variable "bucket-name" {}
-variable "region" {}
-variable "key" {}
-variable "dynamodb_table" {}
+variable "bucket-name" {
+    default = "my-ews-baket"
+}
+variable "region" {
+    default = "us-east-1"
+}
+variable "key" {
+    default = "terraform.tfstate"
+}
+variable "dynamodb_table" {
+    default = "Lock-Files"
+}
 
 variable "is_enabled" {}
 variable "function" {}
