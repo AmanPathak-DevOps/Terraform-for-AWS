@@ -1,3 +1,8 @@
+variable "bucket-name" {}
+variable "region" {}
+variable "key" {}
+variable "dynamodb_table" {}
+
 variable "is_enabled" {}
 variable "function" {}
 variable "lambda_function_name" {}
