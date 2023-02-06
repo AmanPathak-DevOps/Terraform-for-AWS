@@ -24,12 +24,12 @@ pipeline {
             steps {
                 withAWS(credentials: 'jenkins-environment', region: 'us-east-1') {
                 sh 'terraform -chdir=/var/lib/jenkins/workspace/${Pipeline}/Non-Modularized/${File_Name}/ plan'
+                echo "${params.Terraform_Action}"
                 }
             }
         }
         stage('Terraform ${Terraform_Action}') {
             steps {
-                echo "${params.Terraform_Action}"
                 withAWS(credentials: 'jenkins-environment', region: 'us-east-1') {
                 sh 'terraform -chdir=/var/lib/jenkins/workspace/${Pipeline}/Non-Modularized/${File_Name}/ ${Terraform_Action} -auto-approve'
                 }
