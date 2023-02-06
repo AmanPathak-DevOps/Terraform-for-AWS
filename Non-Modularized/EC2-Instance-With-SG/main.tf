@@ -2,15 +2,6 @@ provider "aws" {
   region = "us-east-1"
 }
 
-terraform {
-  backend "s3" {
-    bucket         = "my-ews-baket"
-    region         = "us-east-1"
-    key            = "terraform.tfstate"
-    dynamodb_table = "Lock-Files"
-  }
-}
-
 # creating VPC
 resource "aws_vpc" "vpc" {
   cidr_block           = "10.0.0.0/16"
