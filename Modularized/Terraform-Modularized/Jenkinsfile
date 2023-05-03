@@ -10,7 +10,6 @@ pipeline {
         stage('Git Pulling') {
             steps {
                 git branch: 'Modularized-Terraform', url: 'https://github.com/AmanPathak-dev/Terraform.git'
-                sh 'ls'
             }
         }
         stage('Init') {
@@ -28,7 +27,7 @@ pipeline {
                 }
             }
         }
-        stage('Action}') {
+        stage('Action') {
             steps {
                 echo "${params.Terraform_Action}"
                 withAWS(credentials: 'jenkins-environment', region: 'us-east-1') {
