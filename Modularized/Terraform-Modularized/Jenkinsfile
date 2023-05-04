@@ -23,7 +23,8 @@ pipeline {
         stage('Terraform Plan') {
             steps {
                 sh 'ls'
-                sh 'cp Modularized/Terraform-Modularized/variables.tf ${Module_Name}/'
+                // sh 'cp Modularized/Terraform-Modularized/variables.tf ${Module_Name}/'
+                sh 'cp /var/lib/jenkins/workspace/${Pipeline}/Modularized/Terraform-Modularized/variables.tf /var/lib/jenkins/workspace/${Pipeline}/Modularized/Terraform-Modularized/${Module_Name}/'
                 sh 'cd Modularized/Terraform-Modularized/${Module_Name}/'
                 withAWS(credentials: 'jenkins-environment', region: 'us-east-1') {
                 echo "Enter File Name ${params.File_Name}"  
@@ -35,8 +36,8 @@ pipeline {
         stage('Terraform Apply') {
             steps {
                 sh 'ls'
-                // sh 'cp /var/lib/jenkins/workspace/${Pipeline}/Modularized/Terraform-Modularized/variables.tf /var/lib/jenkins/workspace/${Pipeline}/Modularized/Terraform-Modularized/${Module_Name}/'
-                sh 'cp Modularized/Terraform-Modularized/variables.tf ${Module_Name}/'
+                sh 'cp /var/lib/jenkins/workspace/${Pipeline}/Modularized/Terraform-Modularized/variables.tf /var/lib/jenkins/workspace/${Pipeline}/Modularized/Terraform-Modularized/${Module_Name}/'
+                // sh 'cp Modularized/Terraform-Modularized/variables.tf ${Module_Name}/'
                 sh 'cd Modularized/Terraform-Modularized/${Module_Name}/'
                 withAWS(credentials: 'jenkins-environment', region: 'us-east-1') {
                 sh 'terraform get -update' 
