@@ -16,14 +16,14 @@ pipeline {
             steps {
                 echo "Enter File Name ${params.Module_Name}"
                 echo "Pipeline Name ${params.Pipeline}"
-                sh 'terraform -chdir=/var/lib/jenkins/workspace/${Pipeline}/Modularized/Terraform-Modularized/${Module_Name}/ init'
+                sh 'terraform -chdir=/var/lib/jenkins/jobs/${Pipeline}/workspace/Modularized/Terraform-Modularized/${Module_Name}/ init'
             }
         }
         stage('Plan') {
             steps {
                 withAWS(credentials: 'jenkins-environment', region: 'us-east-1') {
                 echo "Enter File Name ${params.File_Name}"    
-                sh 'terraform -chdir=/var/lib/jenkins/workspace/${Pipeline}/Modularized/Terraform-Modularized/${Module_Name}/ plan -var-file=/var/lib/jenkins/workspace/${Pipeline}/Modularized/Terraform-Modularized/${File_Name}'
+                sh 'terraform -chdir=/var/lib/jenkins/jobs/${Pipeline}/workspace/Modularized/Terraform-Modularized/${Module_Name}/ plan -var-file=/var/lib/jenkins/workspace/${Pipeline}/Modularized/Terraform-Modularized/${File_Name}'
                 }
             }
         }
@@ -31,7 +31,7 @@ pipeline {
             steps {
                 echo "${params.Terraform_Action}"
                 withAWS(credentials: 'jenkins-environment', region: 'us-east-1') {
-                sh 'terraform -chdir=/var/lib/jenkins/workspace/${Pipeline}/Modularized/Terraform-Modularized/${Module_Name}/ ${Terraform_Action} -auto-approve -var-file=/var/lib/jenkins/workspace/${Pipeline}/Modularized/Terraform-Modularized/${File_Name}'
+                sh 'terraform -chdir=/var/lib/jenkins/jobs/${Pipeline}/workspace/Modularized/Terraform-Modularized/${Module_Name}/ ${Terraform_Action} -auto-approve -var-file=/var/lib/jenkins/workspace/${Pipeline}/Modularized/Terraform-Modularized/${File_Name}'
                 }
             }
         }
