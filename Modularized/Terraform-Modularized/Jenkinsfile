@@ -24,7 +24,7 @@ pipeline {
                 sh 'ls ../'
                 sh 'ls Modularized/Terraform-Modularized/'
                 sh 'ls Modularized/Terraform-Modularized/SNS-Topic/'
-                sh 'cp Modularized/Terraform-Modularized/variables.tf Modularized/Terraform-Modularized/SNS-Topic/'
+                // sh 'cp Modularized/Terraform-Modularized/variables.tf Modularized/Terraform-Modularized/SNS-Topic/'
                 withAWS(credentials: 'jenkins-environment', region: 'us-east-1') {
                 echo "Enter File Name ${params.File_Name}"   
                 sh 'terraform get -update'   
@@ -35,7 +35,7 @@ pipeline {
         stage('Action') {
             steps {
                 sh 'cd Modularized/Terraform-Modularized/${Module_Name}/'
-                sh 'cp Modularized/Terraform-Modularized/variables.tf Modularized/Terraform-Modularized/SNS-Topic/'
+                // sh 'cp Modularized/Terraform-Modularized/variables.tf Modularized/Terraform-Modularized/SNS-Topic/'
                 echo "${params.Terraform_Action}"
                 withAWS(credentials: 'jenkins-environment', region: 'us-east-1') {
                 sh 'terraform get -update'      
