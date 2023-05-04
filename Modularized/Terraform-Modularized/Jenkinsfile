@@ -22,6 +22,8 @@ pipeline {
         stage('Plan') {
             steps {
                 sh 'ls ../'
+                sh 'ls Modularized/Terraform-Modularized/'
+                sh 'ls Modularized/Terraform-Modularized/SNS-Topic/'
                 sh 'cp Modularized/Terraform-Modularized/variables.tf Modularized/Terraform-Modularized/SNS-Topic/'
                 withAWS(credentials: 'jenkins-environment', region: 'us-east-1') {
                 echo "Enter File Name ${params.File_Name}"   
