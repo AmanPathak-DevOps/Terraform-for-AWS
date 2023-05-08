@@ -27,11 +27,11 @@ pipeline {
                 sh 'terraform get -update' 
                     script {    
                         if (params.Terraform_Action == 'plan') {
-                            sh 'terraform -chdir=/var/lib/jenkins/jobs/${Pipeline}/workspace/Non-Modularized/${Module_Name}/ plan'
+                            sh 'terraform -chdir=/var/lib/jenkins/jobs/${Pipeline}/workspace/Non-Modularized/${File_Name}/ plan'
                         }   else if (params.Terraform_Action == 'apply') {
-                            sh 'terraform -chdir=/var/lib/jenkins/jobs/${Pipeline}/workspace/Non-Modularized/${Module_Name}/ apply -auto-approve'
+                            sh 'terraform -chdir=/var/lib/jenkins/jobs/${Pipeline}/workspace/Non-Modularized/${File_Name}/ apply -auto-approve'
                         }   else if (params.Terraform_Action == 'destroy') {
-                            sh 'terraform -chdir=/var/lib/jenkins/jobs/${Pipeline}/workspace/Non-Modularized/${Module_Name}/ destroy -auto-approve'
+                            sh 'terraform -chdir=/var/lib/jenkins/jobs/${Pipeline}/workspace/Non-Modularized/${File_Name}/ destroy -auto-approve'
                         } else {
                             error "Invalid value for Terraform_Action: ${params.Terraform_Action}"
                         }
