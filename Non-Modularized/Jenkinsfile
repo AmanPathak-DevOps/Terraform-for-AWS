@@ -1,4 +1,4 @@
-properties([parameters([choice(choices: ['ALB-EC2', 'Hello-World', 'API-Gateway-POST', 'Hello-World-Json', 'ASG-ELB', 'Hosts-Cidr', 'ASG-LB', 'Lambda-Function', 'Auto-Scaling', 'Lambda-S3-Trigger-With-SNS-Topic', 'AWS-Glue-S3', 'Lambda-Trigger-With-S3', 'Cloudwatch-Alarm-Lambda-Failure', 'List-Datatype', 'Cloudwatch-Alarm-Lambda-Failure-Pattern-Mail', 'Module-S3-Bucket', 'Cloudwatch-Alarm-Lambda-Failure-SQS', 'Modules-Demo', 'DynamoDB', 'Module-VPC', 'DynamoDB-Streams-With-Existing-Lambda-Trigger', 'Multi-Block', 'DynamoDB-Streams-With-New-Lambda-Trigger', 'EC2_Instance', 'S3-Static-Website', 'EC2-Instance-With-SG', 'SecurityGroup-EC2', 'EC2-Snapshot', 'Simple-RDS-Instance', 'ECS-Fargate', 'Subnet', 'env-var', 'Terraform-Variables', 'function-lookup', 'Trigger-Lambda-Using-EventBridge', 'function-lookup2', 'Variables', 'function-lower', 'VPC'], name: 'File_Name'), string(defaultValue: 'Terraform-Deployment', name: 'Pipeline'), choice(choices: ['apply', 'destroy'], name: 'Terraform_Action')])])
+properties([parameters([choice(choices: ['ALB-EC2', 'Hello-World', 'API-Gateway-POST', 'Hello-World-Json', 'ASG-ELB', 'Hosts-Cidr', 'ASG-LB', 'Lambda-Function', 'Auto-Scaling', 'Lambda-S3-Trigger-With-SNS-Topic', 'AWS-Glue-S3', 'Lambda-Trigger-With-S3', 'Cloudwatch-Alarm-Lambda-Failure', 'List-Datatype', 'Cloudwatch-Alarm-Lambda-Failure-Pattern-Mail', 'Module-S3-Bucket', 'Cloudwatch-Alarm-Lambda-Failure-SQS', 'Modules-Demo', 'DynamoDB', 'Module-VPC', 'DynamoDB-Streams-With-Existing-Lambda-Trigger', 'Multi-Block', 'DynamoDB-Streams-With-New-Lambda-Trigger', 'EC2_Instance', 'S3-Static-Website', 'EC2-Instance-With-SG', 'SecurityGroup-EC2', 'EC2-Snapshot', 'Simple-RDS-Instance', 'ECS-Fargate', 'Subnet', 'env-var', 'Terraform-Variables', 'function-lookup', 'Trigger-Lambda-Using-EventBridge', 'function-lookup2', 'Variables', 'function-lower', 'VPC'], name: 'File_Name'), string(defaultValue: 'Terraform-Deployment', name: 'Pipeline'), choice(choices: ['plan', 'apply', 'destroy'], name: 'Terraform_Action')])])
 pipeline {
     agent any
     stages {
@@ -18,13 +18,6 @@ pipeline {
                 echo "Enter File Name ${params.File_Name}"
                 echo "Pipeline Name ${params.Pipeline}"
                 sh 'terraform -chdir=/var/lib/jenkins/jobs/${Pipeline}/workspace/Non-Modularized/${File_Name}/ init'
-            }
-        }
-        stage('Plan') {
-            steps {
-                withAWS(credentials: 'jenkins-environment', region: 'us-east-1') {
-                sh 'terraform -chdir=/var/lib/jenkins/jobs/${Pipeline}/workspace/Non-Modularized/${File_Name}/ plan'
-                }
             }
         }
         stage('Action') {

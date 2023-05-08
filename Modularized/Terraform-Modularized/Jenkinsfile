@@ -1,4 +1,4 @@
-properties([parameters([choice(choices: ['Lambda-Function', 'Cloudwatch-Monitoring', 'IAM-Roles', 'EC2-Instance', 'S3-Bucket', 'Glue-Jobs', 'DynamoDB', 'SNS-Topic', 'VPC-Networking'], name: 'Module_Name'), string(defaultValue: 'dev.tfvars', name: 'File_Name'), string(defaultValue: 'Terraform-Module-Deployment', name: 'Pipeline'), choice(choices: ['apply', 'destroy'], name: 'Terraform_Action')])])
+properties([parameters([choice(choices: ['Lambda-Function', 'Cloudwatch-Monitoring', 'IAM-Roles', 'EC2-Instance', 'S3-Bucket', 'Glue-Jobs', 'DynamoDB', 'SNS-Topic', 'VPC-Networking'], name: 'Module_Name'), string(defaultValue: 'dev.tfvars', name: 'File_Name'), string(defaultValue: 'Terraform-Module-Deployment', name: 'Pipeline'), choice(choices: ['plan', 'apply', 'destroy'], name: 'Terraform_Action')])])
 pipeline {
     agent any
     stages {
@@ -17,15 +17,6 @@ pipeline {
                 echo "Enter File Name ${params.Module_Name}"
                 echo "Pipeline Name ${params.Pipeline}"
                 sh 'terraform -chdir=/var/lib/jenkins/jobs/${Pipeline}/workspace/Modularized/Terraform-Modularized/${Module_Name}/ init'
-            }
-        }
-        stage('Plan') {
-            steps {
-                withAWS(credentials: 'jenkins-environment', region: 'us-east-1') {
-                echo "Enter File Name ${params.File_Name}"   
-                sh 'terraform get -update'   
-                sh 'terraform -chdir=/var/lib/jenkins/jobs/${Pipeline}/workspace/Modularized/Terraform-Modularized/${Module_Name}/ plan -var-file=/var/lib/jenkins/jobs/${Pipeline}/workspace/Modularized/Terraform-Modularized/${File_Name}'
-                }
             }
         }
         stage('Action') {
