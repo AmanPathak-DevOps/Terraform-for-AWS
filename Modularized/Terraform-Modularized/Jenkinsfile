@@ -24,13 +24,13 @@ pipeline {
                 echo "${params.Terraform_Action}"
                 withAWS(credentials: 'jenkins-environment', region: 'us-east-1') {
                 sh 'terraform get -update'   
-                if(params.Terraform_Action == 'plan') {
+                if (params.Terraform_Action == 'plan') {
                     sh 'terraform -chdir=/var/lib/jenkins/jobs/${Pipeline}/workspace/Modularized/Terraform-Modularized/${Module_Name}/ plan -var-file=/var/lib/jenkins/jobs/${Pipeline}/workspace/Modularized/Terraform-Modularized/${File_Name}'
-                }   else if(params.Terraform_Action == 'apply') {
+                }   else if (params.Terraform_Action == 'apply') {
                     sh 'terraform -chdir=/var/lib/jenkins/jobs/${Pipeline}/workspace/Modularized/Terraform-Modularized/${Module_Name}/ apply -auto-approve -var-file=/var/lib/jenkins/jobs/${Pipeline}/workspace/Modularized/Terraform-Modularized/${File_Name}'
-                }   else if(params.Terraform_Action == 'destroy') {
+                }   else if (params.Terraform_Action == 'destroy') {
                     sh 'terraform -chdir=/var/lib/jenkins/jobs/${Pipeline}/workspace/Modularized/Terraform-Modularized/${Module_Name}/ destroy -auto-approve -var-file=/var/lib/jenkins/jobs/${Pipeline}/workspace/Modularized/Terraform-Modularized/${File_Name}'
-                } else{
+                } else {
                     error "Invalid value for Terraform_Action: ${params.Terraform_Action}"
                 }
                 }
