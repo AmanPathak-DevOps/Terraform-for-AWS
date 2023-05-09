@@ -25,7 +25,7 @@ pipeline {
                 withAWS(credentials: 'jenkins-environment', region: 'us-east-1') {
                 sh 'terraform get -update'   
                 sh 'cp Modularized/Terraform-Modularized/variables.tf Modularized/Terraform-Modularized/${Module_Name}/'
-                sh 'cp Modularized/Terraform-Modularized/dev.tfvars Modularized/Terraform-Modularized/${Module_Name}/'
+                sh 'sudo cp Modularized/Terraform-Modularized/dev.tfvars Modularized/Terraform-Modularized/${Module_Name}/'
                 script {    
                         if (params.Terraform_Action == 'plan') {
                             sh 'terraform -chdir=Modularized/Terraform-Modularized/${Module_Name}/ plan -var-file=Modularized/Terraform-Modularized/${File_Name}'
