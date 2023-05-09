@@ -39,7 +39,7 @@ pipeline {
                 }
             }
         }
-        stag('Compliance Analysis') {
+        stage('Compliance Analysis') {
             steps {
                 sh 'pip install checkov'
                 sh 'checkov -v'
