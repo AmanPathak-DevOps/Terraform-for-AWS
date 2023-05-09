@@ -24,6 +24,7 @@ pipeline {
                 echo "${params.Terraform_Action}"
                 withAWS(credentials: 'jenkins-environment', region: 'us-east-1') {
                 sh 'terraform get -update'   
+                sh 'cp Modularized/variables.tf Modularized/${Module_Name}/'
                 script {    
                         if (params.Terraform_Action == 'plan') {
                             sh 'terraform -chdir=/var/lib/jenkins/jobs/${Pipeline}/workspace/Modularized/Terraform-Modularized/${Module_Name}/ plan -var-file=/var/lib/jenkins/jobs/${Pipeline}/workspace/Modularized/Terraform-Modularized/${File_Name}'
