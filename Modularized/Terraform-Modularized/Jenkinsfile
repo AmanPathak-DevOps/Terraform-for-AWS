@@ -16,7 +16,7 @@ pipeline {
             steps {
                 echo "Enter File Name ${params.Module_Name}"
                 echo "Pipeline Name ${params.Pipeline}"
-                sh 'terraform -chdir=/var/lib/jenkins/jobs/${Pipeline}/workspace/Modularized/Terraform-Modularized/${Module_Name}/ init'
+                sh 'terraform -chdir=Modularized/Terraform-Modularized/${Module_Name}/ init'
             }
         }
         stage('Action') {
@@ -27,7 +27,7 @@ pipeline {
                 sh 'cp Modularized/Terraform-Modularized/variables.tf Modularized/Terraform-Modularized/${Module_Name}/'
                 script {    
                         if (params.Terraform_Action == 'plan') {
-                            sh 'terraform -chdir=/var/lib/jenkins/jobs/${Pipeline}/workspace/Modularized/Terraform-Modularized/${Module_Name}/ plan -var-file=/var/lib/jenkins/jobs/${Pipeline}/workspace/Modularized/Terraform-Modularized/${File_Name}'
+                            sh 'terraform -chdir=Modularized/Terraform-Modularized/${Module_Name}/ plan -var-file=Modularized/Terraform-Modularized/${File_Name}'
                         }   else if (params.Terraform_Action == 'apply') {
                             sh 'terraform -chdir=/var/lib/jenkins/jobs/${Pipeline}/workspace/Modularized/Terraform-Modularized/${Module_Name}/ apply -auto-approve -var-file=/var/lib/jenkins/jobs/${Pipeline}/workspace/Modularized/Terraform-Modularized/${File_Name}'
                         }   else if (params.Terraform_Action == 'destroy') {
