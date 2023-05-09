@@ -25,13 +25,14 @@ pipeline {
                 withAWS(credentials: 'jenkins-environment', region: 'us-east-1') {
                 sh 'terraform get -update'   
                 sh 'cp Modularized/Terraform-Modularized/variables.tf Modularized/Terraform-Modularized/${Module_Name}/'
+                sh 'cp Modularized/Terraform-Modularized/dev.tfvars Modularized/Terraform-Modularized/${Module_Name}/'
                 script {    
                         if (params.Terraform_Action == 'plan') {
                             sh 'terraform -chdir=Modularized/Terraform-Modularized/${Module_Name}/ plan -var-file=Modularized/Terraform-Modularized/${File_Name}'
                         }   else if (params.Terraform_Action == 'apply') {
-                            sh 'terraform -chdir=/var/lib/jenkins/jobs/${Pipeline}/workspace/Modularized/Terraform-Modularized/${Module_Name}/ apply -auto-approve -var-file=/var/lib/jenkins/jobs/${Pipeline}/workspace/Modularized/Terraform-Modularized/${File_Name}'
+                            sh 'terraform -chdir=/var/lib/jenkins/jobs/${Pipeline}/workspace/Modularized/Terraform-Modularized/${Module_Name}/ apply -auto-approve -var-file=Modularized/Terraform-Modularized/${File_Name}'
                         }   else if (params.Terraform_Action == 'destroy') {
-                            sh 'terraform -chdir=/var/lib/jenkins/jobs/${Pipeline}/workspace/Modularized/Terraform-Modularized/${Module_Name}/ destroy -auto-approve -var-file=/var/lib/jenkins/jobs/${Pipeline}/workspace/Modularized/Terraform-Modularized/${File_Name}'
+                            sh 'terraform -chdir=/var/lib/jenkins/jobs/${Pipeline}/workspace/Modularized/Terraform-Modularized/${Module_Name}/ destroy -auto-approve -var-file=Modularized/Terraform-Modularized/${File_Name}'
                         } else {
                             error "Invalid value for Terraform_Action: ${params.Terraform_Action}"
                         }
