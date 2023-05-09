@@ -1,32 +1,10 @@
 properties([parameters([choice(choices: ['Lambda-Function', 'Cloudwatch-Monitoring', 'IAM-Roles', 'EC2-Instance', 'S3-Bucket', 'Glue-Jobs', 'DynamoDB', 'SNS-Topic', 'VPC-Networking'], name: 'Module_Name'), string(defaultValue: 'dev.tfvars', name: 'File_Name'), string(defaultValue: 'Terraform-Module-Deployment', name: 'Pipeline'), choice(choices: ['plan', 'apply', 'destroy'], name: 'Terraform_Action')])])
 pipeline {
     agent any
-      kubernetes {
-        yaml '''
-apiVersion: v1
-kind: pod
-metadata:
-    name: checkov
-spec:
-  containers:
-  - name: checkov
-    image: bridgecrew/checkov:2.0.888
-    command:
-    - cat
-    tty: true
-'''
-        }
     stages {
         stage('Preparing') {
             steps {
                 sh 'echo Preparing'
-            }
-        }
-        stage('verify version') {
-            steps {
-                container('checkov') {
-                    sh 'checkov --version'
-                }
             }
         }
         stage('Git Pulling') {
