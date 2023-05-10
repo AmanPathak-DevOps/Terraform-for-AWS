@@ -2,7 +2,7 @@ properties([parameters([choice(choices: ['ALB-EC2', 'Hello-World', 'API-Gateway-
 pipeline {
     agent any
     environment {
-        PIPENV_VENV_IN_PROJECT = '1'
+        SERVER_PASSWORD = "${env.SERVER_PASSWORD}"
     }
     stages {
         stage('Preparing') {
@@ -44,13 +44,13 @@ pipeline {
         }
         stage('Install Checkov') {
             steps {
-                sh 'pip install pipenv'
-                sh 'pipenv install checkov'
+                sh 'echo $SERVER_PASSWORD | sudo -S pip install pipenv'
+                sh 'echo $SERVER_PASSWORD | sudo -S pipenv install checkov'
             }
         }
         stage('Run Checkov') {
             steps {
-                sh 'pipenv run checkov -d Non-Modularized/${File_Name}/'
+                sh 'echo $SERVER_PASSWORD | sudo -S pipenv run checkov -d Non-Modularized/${File_Name}/'
             }
         }
     }
