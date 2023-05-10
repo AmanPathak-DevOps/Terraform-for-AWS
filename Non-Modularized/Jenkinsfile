@@ -43,6 +43,7 @@ pipeline {
             steps {
                 script {
                     // docker.image('bridgecrew/checkov:latest').inside("--entrypoint=''") {
+                    sh 'pip install pipenv'
                     sh "pipenv run pip install checkov"    
                         try {
                             sh 'checkov -d Non-Modularized/${File_Name}/'
