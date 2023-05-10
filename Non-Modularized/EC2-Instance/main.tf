@@ -18,7 +18,7 @@ resource "aws_instance" "ec2" {
         http_endpoint = "enabled"
         http_tokens   = "required"
   }
-  iam_instance_profile = "role-for-ec2"
+  iam_instance_profile = aws_iam_instance_profile.example.name
   tags = {
     name = "Aman-EC2"
   }
