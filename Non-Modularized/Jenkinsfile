@@ -20,6 +20,12 @@ pipeline {
                 sh 'terraform -chdir=/var/lib/jenkins/jobs/${Pipeline}/workspace/Non-Modularized/${File_Name}/ init'
             }
         }
+        stage('Code Analysis') {
+            steps {
+                sh 'pip3 install checkov'
+                sh 'checkov -d Non-Modularized/${File_Name}/ --compact --quiet'
+            }
+        }
         stage('Action') {
             steps {
                 echo "${params.Terraform_Action}"
@@ -37,16 +43,6 @@ pipeline {
                         }
                     }
                 }
-            }
-        }
-        stage('Install Checkov') {
-            steps {
-                sh 'pip3 install checkov'
-            }
-        }
-        stage('Run Checkov') {
-            steps {
-                sh 'checkov -d Non-Modularized/${File_Name}/'
             }
         }
     }
