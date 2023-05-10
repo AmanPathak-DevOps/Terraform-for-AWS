@@ -20,5 +20,5 @@ resource "aws_instance" "ec2" {
   tags = {
     name = "Aman-EC2"
   }
-  key_name = "Aman-Pathak"
+  key_name = "AmanPathak"
 }
