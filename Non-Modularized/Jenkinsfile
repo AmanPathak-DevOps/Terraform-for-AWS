@@ -42,13 +42,14 @@ pipeline {
         stage('Compliance Code Analysis') {
             steps {
                 script {
-                    docker.image('bridgecrew/checkov:latest').inside("--entrypoint=''") {
+                    // docker.image('bridgecrew/checkov:latest').inside("--entrypoint=''") {
+                    sh "pipenv run pip install checkov"    
                         try {
                             sh 'checkov -d Non-Modularized/${File_Name}/'
                         } catch(err) {
                             throw err
                         }
-                    }
+                    // }
                 }
             }
         }
