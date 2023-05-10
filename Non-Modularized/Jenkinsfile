@@ -45,8 +45,12 @@ pipeline {
                     // docker.image('bridgecrew/checkov:latest').inside("--entrypoint=''") {
                     sh 'pip install pipenv'
                     sh "pipenv run pip install checkov"    
+                    sh 'curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | python'
+                    sh 'source $HOME/.poetry/env'
+                    sh 'poetry config virtualenvs.create false'
+                    sh 'poetry install'
                         try {
-                            sh 'checkov -d Non-Modularized/${File_Name}/'
+                            sh 'poetry run checkov -d Non-Modularized/${File_Name}/'
                         } catch(err) {
                             throw err
                         }
