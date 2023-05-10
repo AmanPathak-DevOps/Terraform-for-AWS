@@ -3,7 +3,7 @@ provider "aws" {
 }
 
 resource "aws_iam_instance_profile" "example" {
-  name = "role-by-ec2"
+  name = "role-for-ec2"
   role = aws_iam_role.iam-role.name
 }
 resource "aws_instance" "ec2" {
@@ -18,7 +18,7 @@ resource "aws_instance" "ec2" {
         http_endpoint = "enabled"
         http_tokens   = "required"
   }
-  # iam_instance_profile = aws_iam_instance_profile.example.name
+  iam_instance_profile = "role-for-ec2"
   tags = {
     name = "Aman-EC2"
   }
