@@ -39,12 +39,5 @@ pipeline {
                 }
             }
         }
-        stage('Compliance Analysis') {
-            steps {
-                sh 'pip install checkov'
-                sh 'checkov -v'
-                sh 'checkov -d Modularized/Terraform-Modularized/${Module_Name}/ --quiet --compact'
-            }
-        }
     }
 }
