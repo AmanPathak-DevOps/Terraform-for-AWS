@@ -2,6 +2,10 @@ provider "aws" {
   region = "us-east-1"
 }
 
+resource "aws_iam_instance_profile" "example" {
+  name = "role-by-ec2"
+  role = aws_iam_role.iam-role.name
+}
 resource "aws_instance" "ec2" {
   ami           = "ami-007855ac798b5175e"
   instance_type = "t2.micro"
@@ -14,7 +18,7 @@ resource "aws_instance" "ec2" {
         http_endpoint = "enabled"
         http_tokens   = "required"
   }
-  iam_instance_profile = "sts:AssumeRole"
+  iam_instance_profile = aws_iam_instance_profile.example.name
   tags = {
     name = "Aman-EC2"
   }
