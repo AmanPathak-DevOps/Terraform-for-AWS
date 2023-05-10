@@ -21,6 +21,9 @@ pipeline {
             }
         }
         stage('Code Analysis') {
+            when {
+                expression { params.Terraform_Action != 'destroy'}
+            }
             steps {
                 sh 'pip3 install checkov'
                 sh 'checkov -d Non-Modularized/${File_Name}/ --compact --quiet'
