@@ -2,6 +2,17 @@ provider "aws" {
   region = "us-east-1"
 }
 
+terraform {
+  backend "s3" {
+    bucket         = var.S3_NAME
+    key            = "terraform/state.tfstate"
+    region         = "us-east-1"
+    dynamodb_table = "terraform-state-lock"
+    encrypt        = true
+  }
+}
+
+
 # creating VPC
 resource "aws_vpc" "vpc" {
   cidr_block           = "10.0.0.0/16"
@@ -76,7 +87,13 @@ resource "aws_instance" "Aman-EC2" {
 }
 
 variable "PEMFILE" {
-  default   = ""
+  default   = "AmanPathak.pem"
   type      = string
+  sensitive = true
+}
+
+variable "S3_NAME" {
+  default = "artifact-bucket-4290"
+  type = string
   sensitive = true
 }

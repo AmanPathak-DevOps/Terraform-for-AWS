@@ -1,10 +1,8 @@
-
-
 resource "aws_launch_configuration" "LC" {
   name            = "LC"
   image_id        = aws_ami_from_instance.AMI-Aman.id
   instance_type   = "t2.micro"
-  key_name        = "Aman-Pathak"
+  key_name        = "AmanPathak"
   security_groups = [aws_security_group.custom-instance-sg.id]
   user_data       = <<-EOF
                 #!/bin/bash

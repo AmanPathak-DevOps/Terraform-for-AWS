@@ -1,5 +1,3 @@
-
-
 resource "aws_autoscaling_group" "Aman-ASG" {
   name                 = "Aman-ASG"
   vpc_zone_identifier  = [aws_subnet.public-subnet-1.id, aws_subnet.public-subnet-2.id]
@@ -11,7 +9,7 @@ resource "aws_autoscaling_group" "Aman-ASG" {
   health_check_grace_period = 100
 
   health_check_type = "ELB"
-  force_delete = true
+  force_delete      = true
   tag {
     key                 = "Name"
     value               = "custom-ec2-instance"
