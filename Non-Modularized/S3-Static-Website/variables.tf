@@ -1,3 +1,9 @@
-variable "domain_simple_name" {
-  default = "exam-ple.com"
+# S3 bucket name
+variable "bucket-name" {
+  default = "everyone-is-cool-065407"
+}
+
+# Domain name that you have registered
+variable "domain-name" {
+  default = "tanishqa.tech" // Modify as per your domain name
 }
