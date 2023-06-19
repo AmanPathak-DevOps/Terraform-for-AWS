@@ -5,5 +5,5 @@ variable "bucket-name" {
 
 # Domain name that you have registered
 variable "domain-name" {
-  default = "tanishqa.tech" // Modify as per your domain name
+  default = "example.com" // Modify as per your domain name
 }
