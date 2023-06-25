@@ -46,8 +46,10 @@ name: "Terraform"
 
 on:
   push:
-    branches:
-      - master
+    branches-ignore:
+      - '*'
+    tags:
+      - '*'
 
 permissions:
   contents: read
@@ -63,7 +65,7 @@ jobs:
       AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
     defaults:
       run:
-        working-directory: Non-Modularized/ALB-EC2
+        working-directory: ${{ github.event.inputs.folder_name }}
 
     steps:
       - name: Checkout
