@@ -46,10 +46,12 @@ name: "Terraform"
 
 on:
   push:
-    branches-ignore:
-      - '*'
-    tags:
-      - '*'
+      branches:
+        - master
+#     branches-ignore:
+#       - '*'
+#     tags:
+#       - '*'
 
 permissions:
   contents: read
