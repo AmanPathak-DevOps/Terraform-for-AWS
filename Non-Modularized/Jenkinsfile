@@ -27,7 +27,9 @@ pipeline {
             steps {
                 echo "Enter File Name ${params.File_Name}"
                 echo "Pipeline Name ${params.Pipeline}"
-                sh 'terraform -chdir=/var/lib/jenkins/jobs/${Pipeline}/workspace/Non-Modularized/${File_Name}/ init -var-file=env.properties'
+                sh 'ls ../'
+                sh 'cat /var/lib/jenkins/jobs/Terraform-Deployment/workspace/env.properties'
+                sh 'terraform -chdir=/var/lib/jenkins/jobs/${Pipeline}/workspace/Non-Modularized/${File_Name}/ init -var-file=/var/lib/jenkins/jobs/Terraform-Deployment/workspace/env.properties'
             }
         }
         stage('Code Analysis') {
