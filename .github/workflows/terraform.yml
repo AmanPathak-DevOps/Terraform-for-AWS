@@ -87,10 +87,10 @@ jobs:
 
       - name: Terraform plan
         id: plan
-        run: terraform plan 
+        run: terraform plan -lock=false
 
       - name: Terraform apply
-        run: terraform apply -auto-approve
+        run: terraform apply -auto-approve -lock=false
 
 
       # On push to "master", build or change infrastructure according to Terraform configuration files
