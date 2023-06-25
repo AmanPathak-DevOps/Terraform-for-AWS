@@ -80,6 +80,11 @@ jobs:
         working-directory: Non-Modularized/${{ github.event.inputs.folder_name }}
 
     steps:
+      - name: Prompt for Folder Name
+        id: prompt_folder_name
+        run: |
+          echo "::set-output name=folder_name::$(read -p 'Enter the folder name: ' folder; echo $folder)"
+
       - name: Checkout
         uses: actions/checkout@v3
     
