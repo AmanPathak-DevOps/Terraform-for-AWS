@@ -80,6 +80,10 @@ jobs:
         with:
           terraform_version: 1.0.1
           terraform_wrapper: false
+          
+      - name: Terraform Init
+        id: initialize
+        run: terraform -chdir=Non-Modularized/ALB-EC2 init
 
       - name: Terraform plan
         id: plan
