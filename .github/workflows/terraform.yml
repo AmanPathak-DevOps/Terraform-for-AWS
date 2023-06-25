@@ -45,16 +45,16 @@
 name: "Terraform"
 
 on:
-  workflow_dispatch:
-    inputs:
-      file_name:
-        description: 'file name'
-        required: true
-        default: 'Non-Modularized/ALB-EC2'
-        options: 
-          - 'ALB-EC2'
-          - 'Hello-World'
-          - 'API-Gateway-POST'
+#   workflow_dispatch:
+#     inputs:
+#       file_name:
+#         description: 'file name'
+#         required: true
+#         default: 'Non-Modularized/ALB-EC2'
+#         options: 
+#           - 'ALB-EC2'
+#           - 'Hello-World'
+#           - 'API-Gateway-POST'
   push:
       branches:
         - master
@@ -77,13 +77,14 @@ jobs:
       AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
     defaults:
       run:
-        working-directory: Non-Modularized/${{ github.event.inputs.folder_name }}
+        working-directory: Non-Modularized/ALB-EC2
+#         ${{ github.event.inputs.folder_name }}
 
     steps:
-      - name: Prompt for Folder Name
-        id: prompt_folder_name
-        run: |
-          echo "::set-output name=folder_name::$(read -p 'Enter the folder name: ' folder; echo $folder)"
+#       - name: Prompt for Folder Name
+#         id: prompt_folder_name
+#         run: |
+#           echo "::set-output name=folder_name::$(read -p 'Enter the folder name: ' folder; echo $folder)"
 
       - name: Checkout
         uses: actions/checkout@v3
@@ -108,8 +109,8 @@ jobs:
         id: plan
         run: terraform plan -lock=false
 
-      - name: Terraform apply
-        run: terraform apply -auto-approve -lock=false
+      - name: Terraform destroy
+        run: terraform destroy -auto-approve -lock=false
 
 
       # On push to "master", build or change infrastructure according to Terraform configuration files
