@@ -13,6 +13,16 @@ pipeline {
                 sh 'ls'
             }
         }
+        stage('Creds Saving') {
+            steps {
+                withCredentials([
+                  usernamePassword(credentialsId: 'aws-cred', usernameVariable: 'AWS_ACCESS_KEY_ID', passwordVariable: 'AWS_SECRET_ACCESS_KEY')
+                ]) {
+                    sh 'echo "AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID" >> env.properties'
+                    sh 'echo "AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY" >> env.properties'
+                }
+            }
+        }
         stage('Init') {
             steps {
                 echo "Enter File Name ${params.File_Name}"
@@ -36,9 +46,9 @@ pipeline {
                 sh 'terraform get -update' 
                     script {    
                         if (params.Terraform_Action == 'plan') {
-                            sh 'terraform -chdir=Non-Modularized/${File_Name}/ plan --lock=false'
+                            sh 'terraform -chdir=Non-Modularized/${File_Name}/ plan --lock=false -var-file=env.properties'
                         }   else if (params.Terraform_Action == 'apply') {
-                            sh 'terraform -chdir=Non-Modularized/${File_Name}/ apply --lock=false -auto-approve'
+                            sh 'terraform -chdir=Non-Modularized/${File_Name}/ apply --lock=false -auto-approve -var-file=env.properties'
                         }   else if (params.Terraform_Action == 'destroy') {
                             sh 'terraform -chdir=Non-Modularized/${File_Name}/ destroy --lock=false -auto-approve'
                         } else {
