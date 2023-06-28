@@ -2,7 +2,7 @@ terraform {
   backend "s3" {
     bucket         = "my-ews-baket"
     region         = "us-east-1"
-    key            = "Non-Modularized/ALB-EC2/terraform.tfstate"
+    key            = "Non-Modularized/Ec2-Instance-With-SG/terraform.tfstate"
     dynamodb_table = "Lock-Files"
     encrypt = true
   }
