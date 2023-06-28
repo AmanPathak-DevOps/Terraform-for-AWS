@@ -38,9 +38,9 @@ pipeline {
                 sh 'terraform get -update' 
                     script {    
                         if (params.Terraform_Action == 'plan') {
-                            sh 'terraform -chdir=Non-Modularized/${File_Name}/ plan --lock=false -var-file=env.properties'
+                            sh 'terraform -chdir=Non-Modularized/${File_Name}/ plan --lock=false'
                         }   else if (params.Terraform_Action == 'apply') {
-                            sh 'terraform -chdir=Non-Modularized/${File_Name}/ apply --lock=false -auto-approve -var-file=env.properties'
+                            sh 'terraform -chdir=Non-Modularized/${File_Name}/ apply --lock=false -auto-approve'
                         }   else if (params.Terraform_Action == 'destroy') {
                             sh 'terraform -chdir=Non-Modularized/${File_Name}/ destroy --lock=false -auto-approve'
                         } else {
