@@ -16,7 +16,9 @@ pipeline {
             steps {
                 echo "Enter File Name ${params.Module_Name}"
                 echo "Pipeline Name ${params.Pipeline}"
-                sh 'terraform -chdir=Modularized/Terraform-Modularized/${Module_Name}/ init'
+                withAWS(credentials: 'jenkins-environment', region: 'us-east-1') {
+                sh 'terraform -chdir=Modularized/Terraform-Modularized/${Module_Name}/ init --lock=false'
+                }
             }
         }
         stage('Action') {
@@ -27,11 +29,11 @@ pipeline {
                 sh 'cp Modularized/Terraform-Modularized/variables.tf Modularized/Terraform-Modularized/${Module_Name}/'
                 script {    
                         if (params.Terraform_Action == 'plan') {
-                            sh 'terraform -chdir=Modularized/Terraform-Modularized/${Module_Name}/ plan -var-file=/var/lib/jenkins/jobs/${Pipeline}/workspace/Modularized/Terraform-Modularized/${File_Name}'
+                            sh 'terraform -chdir=Modularized/Terraform-Modularized/${Module_Name}/ plan -var-file=/var/lib/jenkins/jobs/${Pipeline}/workspace/Modularized/Terraform-Modularized/${File_Name} --lock=false'
                         }   else if (params.Terraform_Action == 'apply') {
-                            sh 'terraform -chdir=Modularized/Terraform-Modularized/${Module_Name}/ apply -auto-approve -var-file=/var/lib/jenkins/jobs/${Pipeline}/workspace/Modularized/Terraform-Modularized/${File_Name}'
+                            sh 'terraform -chdir=Modularized/Terraform-Modularized/${Module_Name}/ apply -auto-approve -var-file=/var/lib/jenkins/jobs/${Pipeline}/workspace/Modularized/Terraform-Modularized/${File_Name} --lock=false'
                         }   else if (params.Terraform_Action == 'destroy') {
-                            sh 'terraform -chdir=Modularized/Terraform-Modularized/${Module_Name}/ destroy -auto-approve -var-file=/var/lib/jenkins/jobs/${Pipeline}/workspace/Modularized/Terraform-Modularized/${File_Name}'
+                            sh 'terraform -chdir=Modularized/Terraform-Modularized/${Module_Name}/ destroy -auto-approve -var-file=/var/lib/jenkins/jobs/${Pipeline}/workspace/Modularized/Terraform-Modularized/${File_Name} --lock=false'
                         } else {
                             error "Invalid value for Terraform_Action: ${params.Terraform_Action}"
                         }
