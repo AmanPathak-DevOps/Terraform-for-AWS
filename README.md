@@ -5,7 +5,7 @@ This repository contains Terraform configurations for deploying various AWS serv
 ## Table of Contents
 
 - [Introduction](#introduction)
-- [Terraform AWS Infrastructure](#Terraform AWS Infrastructure)
+- [Terraform AWS Infrastructure](#Terraform-AWS-Infrastructure)
 - [Non-Modularized](#Non-Modularized)
 - [Modularized](Modularized)
 - [Services Configured](#services-configured)
