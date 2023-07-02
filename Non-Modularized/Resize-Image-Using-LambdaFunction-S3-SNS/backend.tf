@@ -4,13 +4,13 @@ terraform {
     region         = "us-east-1"
     key            = "Non-Modularized/Lambda-Trigger-With-S3/terraform.tfstate"
     dynamodb_table = "Lock-Files"
-    encrypt = true
+    encrypt        = true
   }
   required_version = ">=0.13.0"
   required_providers {
     aws = {
       version = ">= 2.7.0"
-      source = "hashicorp/aws"
+      source  = "hashicorp/aws"
     }
   }
 }
