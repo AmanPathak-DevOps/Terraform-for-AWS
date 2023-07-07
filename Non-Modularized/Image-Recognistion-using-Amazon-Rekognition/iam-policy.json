@@ -1,0 +1,18 @@
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Effect": "Allow",
+            "Action": [
+              "logs:CreateLogStream",
+              "logs:CreateLogGroup",
+              "logs:PutLogEvents",
+              "rekognition:*",
+              "s3:*",
+              "s3-object-lambda:*",
+              "sns:*"
+            ],
+            "Resource": "*"
+        }
+    ]
+  }
