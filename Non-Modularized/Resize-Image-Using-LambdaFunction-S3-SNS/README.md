@@ -52,7 +52,7 @@ Follow these steps to set up and deploy the image resizing automation:
 6. Deploy the Lambda function and associated resources using the provided Terraform scripts (optional).
 7. Test the automation by uploading images to the original image bucket.
 
-For detailed instructions and code snippets, refer to the [full blog post](#link-to-your-blog-post) associated with this project.
+For detailed instructions and code snippets, refer to the [full blog post](#https://medium.com/devops-dev/end-to-end-image-resizing-pipeline-with-aws-s3-lambda-and-sns-a-step-by-step-guide-94e42124ec0d) associated with this project.
 
 ## Architecture
 
