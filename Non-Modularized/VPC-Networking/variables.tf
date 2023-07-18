@@ -63,9 +63,9 @@ variable "key-name" {
 }
 
 variable "instance1-name" {
-  default = "Public-Instance"
+  default = "Web-Server"
 }
 
 variable "instance2-name" {
-  default = "Private-Instance"
+  default = "Database-Server"
 }

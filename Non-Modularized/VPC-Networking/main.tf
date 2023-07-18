@@ -30,10 +30,10 @@ resource "aws_subnet" "public-subnet" {
 
 # Creating Private Subnet
 resource "aws_subnet" "private-subnet" {
-  vpc_id                  = aws_vpc.vpc.id
-  cidr_block              = var.subnet2-cidr-block
-  availability_zone       = "us-east-1b"
-  map_public_ip_on_launch = false
+  vpc_id            = aws_vpc.vpc.id
+  cidr_block        = var.subnet2-cidr-block
+  availability_zone = "us-east-1b"
+  # map_public_ip_on_launch = false
 
   tags = {
     Name = var.private-subnet-name
@@ -132,10 +132,24 @@ resource "aws_instance" "public-instance" {
   tags = {
     Name = var.instance1-name
   }
+
+  user_data = <<-EOF
+  #! /bin/sh
+  sudo apt-get update
+  sudo apt-get install apache2 -y
+  sudo systemctl enable apache2
+  sudo systemctl restart apache2
+  sudo apt install php libapache2-mod-php php-mysql -y
+  sudo wget https://wordpress.org/latest.zip
+  sudo apt-get install unzip -y
+  unzip latest.zip
+  sudo mv wordpress/ /var/www/html
+  sudo apt install mysql-client -y
+  EOF
 }
 
 # Creating Private Instance
-resource "aws_instance" "private-instance" {
+resource "aws_instance" "database-instance" {
   ami             = var.ami-id
   instance_type   = "t2.micro"
   subnet_id       = aws_subnet.private-subnet.id
