@@ -5,7 +5,10 @@
 [![AWS](https://img.shields.io/badge/AWS-%F0%9F%9B%A1-orange)](https://aws.amazon.com)
 [![Terraform](https://img.shields.io/badge/Terraform-%E2%9C%A8-lightgrey)](https://www.terraform.io)
 
-Automating the image resizing process has never been easier! This project demonstrates how to leverage the power of serverless architecture to automate image resizing using AWS S3, Lambda, and SNS.
+Automating the image resizing process has never been easier! This project demonstrates how to leverage the power of serverless architecture to automate image 
+resizing using AWS S3, Lambda, and SNS.
+
+![Architecture Diagram](assets/AWS-Infra.gif)
 
 ## Table of Contents
 
@@ -61,8 +64,6 @@ The image resizing automation leverages the following AWS services:
 - **AWS S3**: Stores the original and resized images.
 - **AWS Lambda**: Executes the image resizing code in a serverless environment.
 - **AWS SNS**: Sends email notifications about successful image resizing.
-
-![Architecture Diagram](assets/AWS-Infra.gif)
 
 
 ## Deployment
