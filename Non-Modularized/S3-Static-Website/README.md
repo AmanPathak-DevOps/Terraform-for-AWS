@@ -37,7 +37,7 @@ CloudSpark is a powerful and easy-to-use Terraform project that unleashes the fu
 
 ## 🌟 Manual Approach - Your AWS Masterclass
 
-Prefer a deeper understanding of each component? We've got you covered! Check out the <a href="">Medium Blog</a> for an in-depth AWS masterclass on building your website from scratch. 🤓
+Prefer a deeper understanding of each component? We've got you covered! Check out the <a href="https://medium.com/@aman.pathak_51134/empower-your-website-a-step-by-step-guide-to-building-a-secure-and-blazing-fast-aws-s3-website-c49d37bff4d7">Medium Blog</a> for an in-depth AWS masterclass on building your website from scratch. 🤓
 
 ## 🏆 Show Off Your CloudSpark Website!
 
