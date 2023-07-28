@@ -31,6 +31,24 @@ resource "aws_key_pair" "generated_key" {
 
 }
 
+resource "aws_ssm_parameter" "pem-file" {
+  count = "${var.is_paramter_store_enabled == 1 ? var.paramter_store_count : 0 }"
+
+  name = var.ssm_parameter_store_file_name
+  description = var.ssm_parameter_store_description
+  type = var.ssm_parameter_store_type
+  value = var.ssm_parameter_store_file_path
+}
+
+resource "null_resource" "delete_pem_file" {
+  provisioner "local-exec" {
+    command     = "rm -f ${path.module}/${var.key_name}.pem"
+    when        = destroy
+  }
+
+  depends_on = [aws_ssm_parameter.pem-file]
+}
+
 resource "aws_s3_bucket" "bucket_for_pem_files" {
     count = "${var.is_bucket_enable == 1 ? var.bucket_count : 0 }"
 
@@ -45,13 +63,6 @@ resource "aws_s3_bucket_public_access_block" "block_access" {
     block_public_policy     = true
     ignore_public_acls      = true
     restrict_public_buckets = true
-}
-
-resource "aws_s3_bucket_acl" "private-bucket" {
-    count = "${var.is_bucket_enable == 1 ? var.bucket_count : 0}"
-
-    bucket = aws_s3_bucket.bucket_for_pem_files[count.index].id
-    acl = "private"   
 }
 
 resource "aws_s3_object" "pem-file-upload" {

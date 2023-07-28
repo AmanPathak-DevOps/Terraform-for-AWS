@@ -1,1 +1,0 @@
-Technology = "C & C++ & Java & DevOps"

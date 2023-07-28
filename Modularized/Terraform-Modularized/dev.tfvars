@@ -1,11 +1,11 @@
-region              = "us-east-1"
+region = "us-east-1"
 
 # EC2-Instance
 is_instance_enabled = 1
 aws_instance_type   = "t2.micro"
 instance_name       = "Ubuntu-Networking"
-
-security_group = "SecurityGroup-Networking"
+security_group      = "SecurityGroup-Networking"
+key_name            = "instance-key"
 
 # IAM-Roles
 role_name        = "iam-role-lambda"
@@ -15,7 +15,7 @@ policy_name = "AWS-Lambda-Role"
 policy_file = "policy.json"
 
 # Lambda-Function
-is_lambda_enabled   = 0
+is_lambda_enabled  = 0
 functionname       = "lambda"
 lambdafunctionname = "-for-SNS"
 lambda-runtime     = "python3.8"
@@ -24,7 +24,7 @@ handler-code       = "code.zip"
 role-lambda        = aws_iam_role.iam-role.arn
 timout-lambda      = "120"
 memory-size        = "128"
-sdlc_env            = "dev"
+sdlc_env           = "dev"
 
 
 # S3-Bucket
@@ -76,4 +76,4 @@ topic_name = "SNS-Modularized"
 
 is_subscription_enable = 1
 protocol_subscription  = "email"
-endpoint = "avigautam63@gmail.com"
+endpoint               = "avigautam63@gmail.com"

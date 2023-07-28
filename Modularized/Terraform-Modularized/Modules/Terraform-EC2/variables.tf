@@ -10,12 +10,20 @@ variable "is_key_pair_enabled" {
 variable "key_pair_count" {
   default = 1
 }
-variable "key_name" {
-    default = "instance-key"
-}
+variable "key_name" {}
 variable "is_bucket_enable" {
     default = 1
 }
+variable "is_paramter_store_enabled" {
+    default = 1
+}
+variable "paramter_store_count" {
+    default = 1
+}
+variable "ssm_parameter_store_file_name" {}
+variable "ssm_parameter_store_description" {}
+variable "ssm_parameter_store_type" {}
+variable "ssm_parameter_store_file_path" {}
 variable "bucket_count" {
     default = 1
 }
