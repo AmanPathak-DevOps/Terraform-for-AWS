@@ -97,4 +97,4 @@ This project does not include a specific license, and all rights are reserved by
 
 ## Contact
 
-If you have any questions, suggestions, or feedback, please feel free to contact the project maintainer at [aman07pathak@gmail.com](mailto:aman07pathak@gmail.com).
+If you have any questions, suggestions, or feedback, please feel free to contact the project maintainer at [aman.pathk23@gmail.com](mailto:aman.pathk23@gmail.com).
