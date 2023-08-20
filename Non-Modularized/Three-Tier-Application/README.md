@@ -33,7 +33,7 @@ This project takes the complexity out of deploying a Three-Tier Architecture on 
 
 ## Detailed Guide
 
-For an in-depth walkthrough of the project, check out the detailed guide on [Medium](https://medium.com/@aman.pathak_51134).
+For an in-depth walkthrough of the project, check out the detailed guide on [Medium](https://medium.com/@aman.pathak_51134/mastering-three-tier-architecture-deployment-on-aws-with-terraform-f43e84be1edd).
 
 ## Connect with Us
 
