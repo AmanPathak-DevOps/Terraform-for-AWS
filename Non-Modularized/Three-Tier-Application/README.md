@@ -14,7 +14,6 @@ Welcome to the realm of Three-Tier Architecture deployment on Amazon Web Service
 ## Project Overview
 
 This project takes the complexity out of deploying a Three-Tier Architecture on AWS. By automating the creation of your entire infrastructure, it allows you to focus on what matters most – your application's core logic. Whether you're a seasoned developer or new to the AWS ecosystem, this project empowers you to spin up a complete environment with minimal effort.
-# Three-Tier Architecture Deployment on AWS with Terraform
 
 
 ## Getting Started
