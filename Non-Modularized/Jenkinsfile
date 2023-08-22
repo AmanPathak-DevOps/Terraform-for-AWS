@@ -23,13 +23,13 @@ pipeline {
             }
         }
         stage('Code Analysis') {
-            agent {
-                docker {
-                    image 'tfsec/tfsec:v1.13.2-arm64v8'
-                }
-            }
             when {
                 expression { params.Terraform_Action != 'destroy'}
+            }
+            agent {
+                docker {
+                    image 'tfsec/tfsec-ci:v0.57.1'
+                }
             }
             steps {
                 sh '''
