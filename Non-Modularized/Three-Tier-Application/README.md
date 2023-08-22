@@ -4,7 +4,7 @@
 [![AWS](https://img.shields.io/badge/AWS-%F0%9F%9B%A1-orange)](https://aws.amazon.com)
 [![Terraform](https://img.shields.io/badge/Terraform-%E2%9C%A8-lightgrey)](https://www.terraform.io)
 
-![AWS Infra Diagram](assets/Three-Tier-Architecture.gif)
+<img src="assets/Three-Tier-Architecture.gif"> </img>
 
 ## Introduction
 
@@ -33,7 +33,7 @@ This project takes the complexity out of deploying a Three-Tier Architecture on 
 
 ## Detailed Guide
 
-For an in-depth walkthrough of the project, check out the detailed guide on [Medium](https://medium.com/@aman.pathak_51134).
+For an in-depth walkthrough of the project, check out the detailed guide on [Medium](https://medium.com/@aman.pathak_51134/mastering-three-tier-architecture-deployment-on-aws-with-terraform-f43e84be1edd).
 
 ## Connect with Us
 

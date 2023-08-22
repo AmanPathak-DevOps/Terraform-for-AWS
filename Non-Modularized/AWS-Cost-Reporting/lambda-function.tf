@@ -6,6 +6,11 @@ resource "aws_lambda_function" "cost-reporting-lambda" {
   handler          = "python-code.lambda_handler"
   runtime          = "python3.9"
   source_code_hash = filebase64sha256("python-code.zip")
+  
+  # TFSec Suggested
+  tracing_config {
+     mode = "Active"
+   }
 }
 
 resource "aws_lambda_permission" "eventbridge-permission" {
