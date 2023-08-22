@@ -26,13 +26,9 @@ pipeline {
             when {
                 expression { params.Terraform_Action != 'destroy'}
             }
-            agent {
-                docker {
-                    image 'tfsec/tfsec-ci:v0.57.1'
-                }
-            }
             steps {
                 sh '''
+                    sudo curl -s https://raw.githubusercontent.com/aquasecurity/tfsec/master/scripts/install_linux.sh | bash
                     tfsec Non-Modularized/${File_Name}
                 '''
             }
