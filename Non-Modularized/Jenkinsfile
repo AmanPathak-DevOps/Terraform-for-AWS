@@ -23,12 +23,18 @@ pipeline {
             }
         }
         stage('Code Analysis') {
+            agent {
+                docker {
+                    image 'tfsec/tfsec:v1.13.2-arm64v8'
+                }
+            }
             when {
                 expression { params.Terraform_Action != 'destroy'}
             }
             steps {
-                sh 'pip3 install checkov'
-                // sh 'checkov -d Non-Modularized/${File_Name}/ --compact --quiet'
+                sh '''
+                    tfsec Non-Modularized/${File_Name}
+                '''
             }
         }
         stage('Action') {
