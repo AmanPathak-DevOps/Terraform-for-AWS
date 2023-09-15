@@ -93,7 +93,7 @@ Contributions to this repository are welcome! If you have any improvements or ad
 
 ## License
 
-This project does not include a specific license, and all rights are reserved by the project owner. The code and configuration files provided in this repository are for reference purposes only and should not be used or distributed without explicit permission from the owner.
+This project is licensed under the [MIT License](LICENSE).
 
 ## Contact
 
