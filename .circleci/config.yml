@@ -15,11 +15,10 @@ jobs:
           # command: ls Non-Modularized
       - run:
           name: Terraform Init
-          command: terraform init
+          command: terraform init -chdir=Non-Modularized/AWS-Serverless-Project/
       - run:
           name: Terraform Plan
-          # command: terraform -chdir=Non-Modularized/AWS-Serverless-Project/ plan -var-file=Non-Modularized/AWS-Serverless-Project/variables.tfvars
-          command: terraform plan -var-file=variables.tfvars
+          command: terraform -chdir=Non-Modularized/AWS-Serverless-Project/ plan -var-file=Non-Modularized/AWS-Serverless-Project/variables.tfvars
       # - run:
       #     name: Terraform Apply
       #     command: terraform apply -auto-approve tfplan
