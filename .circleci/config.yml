@@ -12,7 +12,7 @@ jobs:
           command: echo AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY > ~/.env
       - run:
           name: Terraform Init
-          command: ls
+          command: pwd
       - run:
           name: Terraform Init
           command: terraform init
