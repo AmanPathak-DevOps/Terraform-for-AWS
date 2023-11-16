@@ -4,15 +4,11 @@ jobs:
   deploy:
     docker:
       - image: hashicorp/terraform:latest
-    working_directory: Non-Modularized/AWS-Serverless-Project/
     steps:
       - checkout
       - run:
           name: Set up AWS credentials
           command: echo AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY > ~/.env
-      # - run:
-      #     name: Terraform Init
-          # command: ls Non-Modularized
       - run:
           name: Terraform Init
           command: terraform -chdir=Non-Modularized/AWS-Serverless-Project/ init
