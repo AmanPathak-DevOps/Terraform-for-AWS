@@ -18,3 +18,9 @@ jobs:
       # - run:
       #     name: Terraform Apply
       #     command: terraform apply -auto-approve tfplan
+
+workflows:
+  version: 2
+  build-and-deploy:
+    jobs:
+      - deploy
