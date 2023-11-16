@@ -1,6 +1,6 @@
 terraform {
   backend "s3" {
-    bucket         = "my-ews-baket"
+    bucket         = "my-ews-baket1"
     region         = "us-east-1"
     key            = "Non-Modularized/Cloudwatch-Alarm-Lambda-Failure/terraform.tfstate"
     dynamodb_table = "Lock-Files"
