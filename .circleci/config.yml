@@ -15,7 +15,7 @@ jobs:
           command: ls
       - run:
           name: Terraform Init
-          command: terraform -chdir=Non-Modularized/AWS-Serverless-Project/ init
+          command: terraform init
       - run:
           name: Terraform Plan
           command: terraform plan -var-file variables.tfvars
