@@ -28,26 +28,26 @@ jobs:
             cd ./Non-Modularized/AWS-Serverless-Project
             terraform apply --auto-approve -var-file=variables.tfvars
 
-  # destroy:
-  #   docker:
-  #     - image: hashicorp/terraform:latest
-      # environment:
-      # AWS_DEFAULT_REGION: "us-east-1"
-  #   steps:
-  #     - checkout
-  #     - run:
-  #         name: Set up AWS credentials
-  #         command: echo AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY > ~/.env
-  #     - run:
-  #         name: Initializing the Terraform code
-  #         command: |
-  #           cd ./Non-Modularized/AWS-Serverless-Project
-  #           terraform init
-  #     - run:
-  #         name: Terraform Destroy
-  #         command: |
-  #           cd ./Non-Modularized/AWS-Serverless-Project
-  #           terraform destroy --auto-approve -var-file variables.tfvars
+  destroy:
+    docker:
+      - image: hashicorp/terraform:latest
+    environment:
+      AWS_DEFAULT_REGION: "us-east-1"
+    steps:
+      - checkout
+      - run:
+          name: Set up AWS credentials
+          command: echo AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY > ~/.env
+      - run:
+          name: Initializing the Terraform code
+          command: |
+            cd ./Non-Modularized/AWS-Serverless-Project
+            terraform init
+      - run:
+          name: Terraform Destroy
+          command: |
+            cd ./Non-Modularized/AWS-Serverless-Project
+            terraform destroy --auto-approve -var-file variables.tfvars
 
 workflows:
   version: 2
@@ -55,6 +55,6 @@ workflows:
     jobs:
       - deploy
 
-  # destroy-infrastructure:
-  #   jobs:
-  #     - destroy
+  destroy-infrastructure:
+    jobs:
+      - destroy
