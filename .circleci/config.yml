@@ -15,7 +15,9 @@ jobs:
           command: ls
       - run:
           name: Getting into the working_directory
-          command: cd ./Non-Modularized/AWS-Serverless-Project
+          command: |
+            cd ./Non-Modularized/AWS-Serverless-Project
+            ls
       - run: 
           name: LS
           command: ls 
