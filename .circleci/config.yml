@@ -4,7 +4,7 @@ jobs:
   deploy:
     docker:
       - image: hashicorp/terraform:latest
-    working_directory: Non-Modularized/AWS-Serverless-Project/
+    # working_directory: Non-Modularized/AWS-Serverless-Project/
     steps:
       - checkout
       - run:
