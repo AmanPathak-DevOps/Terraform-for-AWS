@@ -11,6 +11,8 @@ resource "aws_amplify_app" "my_amplify_app" {
 resource "aws_amplify_branch" "master" {
   app_id      = aws_amplify_app.my_amplify_app.id
   branch_name = var.app_branch
+
+  depends_on = [ aws_amplify_app.my_amplify_app ]
 }
 
 resource "aws_amplify_domain_association" "example" {
