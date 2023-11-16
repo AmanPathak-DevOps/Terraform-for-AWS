@@ -1,6 +1,6 @@
 terraform {
   backend "s3" {
-    bucket         = "my-ews-baket"
+    bucket         = "my-ews-baket1"
     region         = "us-east-1"
     key            = "Non-Modularized/DynamoDB-Streams-With-Lambda-Trigger/terraform.tfstate"
     dynamodb_table = "Lock-Files"

@@ -2,7 +2,7 @@
 # You can create your own bucket and DynamoDB and replace the name with your bucket and DynamoDB table
 terraform {
   backend "s3" {
-    bucket         = "my-ews-baket"
+    bucket         = "my-ews-baket1"
     region         = "us-east-1"
     key            = "Non-Modularized/Three-Tier-Architecture/terraform.tfstate"
     dynamodb_table = "Lock-Files"
