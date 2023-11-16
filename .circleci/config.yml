@@ -4,6 +4,8 @@ jobs:
   deploy:
     docker:
       - image: hashicorp/terraform:latest
+    environment:
+      AWS_DEFAULT_REGION: "us-east-1"
     # working_directory: Non-Modularized/AWS-Serverless-Project
     steps:
       - checkout
@@ -29,6 +31,8 @@ jobs:
   # destroy:
   #   docker:
   #     - image: hashicorp/terraform:latest
+      # environment:
+      # AWS_DEFAULT_REGION: "us-east-1"
   #   steps:
   #     - checkout
   #     - run:
