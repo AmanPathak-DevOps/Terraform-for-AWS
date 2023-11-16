@@ -12,7 +12,7 @@ jobs:
           name: Set up AWS credentials
           command: echo AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY > ~/.env
       - run:
-          name: Initializing the terraform code
+          name: Initializing the Terraform code
           command: |
             cd ./Non-Modularized/AWS-Serverless-Project
             terraform init
@@ -22,7 +22,7 @@ jobs:
             cd ./Non-Modularized/AWS-Serverless-Project
             terraform plan -var-file variables.tfvars
       - run:
-          name: Terraform Plan
+          name: Terraform Apply
           command: |
             cd ./Non-Modularized/AWS-Serverless-Project
             terraform apply --auto-approve -var-file=variables.tfvars
