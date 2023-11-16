@@ -1,13 +1,8 @@
 variable "app_name" {}
-
 variable "app_repo" {}
-
 variable "app_branch" {}
-
 variable "app_domain_name" {}
-
 variable "db_table_name" {}
-
 variable "function_name_GET" {}
 variable "bucket_name" {}
 variable "GET_function_file" {}
