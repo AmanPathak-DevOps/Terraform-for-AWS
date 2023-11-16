@@ -12,10 +12,10 @@ jobs:
           command: echo AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY > ~/.env
       - run:
           name: Terraform Init
-          command: ls
+          command: ls Non-Modularized
       - run:
           name: Terraform Init
-          command: terraform -chdir=/Non-Modularized/AWS-Serverless-Project/ init
+          command: terraform -chdir=Non-Modularized/AWS-Serverless-Project/ init
       - run:
           name: Terraform Plan
           command: terraform -chdir=Non-Modularized/AWS-Serverless-Project/ plan -var-file=Non-Modularized/AWS-Serverless-Project/variables.tfvars
