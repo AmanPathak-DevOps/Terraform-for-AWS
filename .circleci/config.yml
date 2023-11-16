@@ -10,32 +10,47 @@ jobs:
       - run:
           name: Set up AWS credentials
           command: echo AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY > ~/.env
-      - run: 
-          name: LS
-          command: ls
       - run:
-          name: Getting into the working_directory
+          name: Initializing the terraform code
           command: |
             cd ./Non-Modularized/AWS-Serverless-Project
-            ls
-      - run: 
-          name: LS
-          command: ls 
-      - run: 
-          name: LS
-          command: ls Non-Modularized/AWS-Serverless-Project/
+            terraform init
       - run:
-          name: Terraform Init
-          command: terraform init
-      # - run:
-      #     name: Terraform Plan
-      #     command: terraform -chdir=Non-Modularized/AWS-Serverless-Project/ plan -var-file=Non-Modularized/AWS-Serverless-Project/variables.tfvars
-      # - run:
-      #     name: Terraform Apply
-      #     command: terraform apply -auto-approve tfplan
+          name: Terraform Plan
+          command: |
+            cd ./Non-Modularized/AWS-Serverless-Project
+            terraform plan -var-file variables.tfvars
+      - run:
+          name: Terraform Plan
+          command: |
+            cd ./Non-Modularized/AWS-Serverless-Project
+            terraform apply --auto-approve -var-file=variables.tfvars
+
+  # destroy:
+  #   docker:
+  #     - image: hashicorp/terraform:latest
+  #   steps:
+  #     - checkout
+  #     - run:
+  #         name: Set up AWS credentials
+  #         command: echo AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY > ~/.env
+  #     - run:
+  #         name: Initializing the Terraform code
+  #         command: |
+  #           cd ./Non-Modularized/AWS-Serverless-Project
+  #           terraform init
+  #     - run:
+  #         name: Terraform Destroy
+  #         command: |
+  #           cd ./Non-Modularized/AWS-Serverless-Project
+  #           terraform destroy --auto-approve -var-file variables.tfvars
 
 workflows:
   version: 2
   build-and-deploy:
     jobs:
       - deploy
+
+  # destroy-infrastructure:
+  #   jobs:
+  #     - destroy
