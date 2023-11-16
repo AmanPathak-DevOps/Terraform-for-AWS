@@ -4,7 +4,7 @@ jobs:
   deploy:
     docker:
       - image: hashicorp/terraform:latest
-    # working_directory: Non-Modularized/AWS-Serverless-Project/
+    working_directory: Non-Modularized/AWS-Serverless-Project/
     steps:
       - checkout
       - run:
@@ -15,10 +15,11 @@ jobs:
           command: ls Non-Modularized
       - run:
           name: Terraform Init
-          command: terraform -chdir=Non-Modularized/AWS-Serverless-Project/ init
+          command: terraform init
       - run:
           name: Terraform Plan
-          command: terraform -chdir=Non-Modularized/AWS-Serverless-Project/ plan -var-file=Non-Modularized/AWS-Serverless-Project/variables.tfvars
+          # command: terraform -chdir=Non-Modularized/AWS-Serverless-Project/ plan -var-file=Non-Modularized/AWS-Serverless-Project/variables.tfvars
+          command: terraform init -var-file=variables.tfvars
       # - run:
       #     name: Terraform Apply
       #     command: terraform apply -auto-approve tfplan
