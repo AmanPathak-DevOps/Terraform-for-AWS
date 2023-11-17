@@ -29,5 +29,7 @@ resource "aws_amplify_domain_association" "example" {
     prefix      = "www"
   }
 
+  wait_for_verification = true
+
   depends_on = [aws_amplify_app.my_amplify_app]
 }

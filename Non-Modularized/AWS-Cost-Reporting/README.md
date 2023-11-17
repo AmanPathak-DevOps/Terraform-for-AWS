@@ -49,7 +49,7 @@ For users who prefer infrastructure-as-code and want to automate resource provis
 
 To get started with the project, follow these steps:
 
-1. Clone the repository: `git clone https://github.com/AmanPathak-DevOps/Terraform-for-AWS,git`
+1. Clone the repository: `git clone https://github.com/AmanPathak-DevOps/Terraform-for-AWS.git`
 2. Set up the necessary AWS resources based on your chosen implementation option.
 3. Configure the Lambda function and EventBridge rule as per the instructions.
 4. Update the email addresses and other configurations as required.
