@@ -68,7 +68,7 @@ These project highlights showcase the comprehensive AWS services integrated into
 
 ## Detailed Guide
 
-For an in-depth walkthrough of the project, check out the detailed guide on [Medium]().
+For an in-depth walkthrough of the project, check out the detailed guide on [Medium](https://medium.com/@amanpathakdevops/deploy-two-tier-architecture-on-aws-using-terraform-9a1e310811c0).
 
 ## Connect with Me
 
